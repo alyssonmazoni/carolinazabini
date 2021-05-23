@@ -58,7 +58,8 @@ if uploaded_file is not None:
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center') # horizontal alignment can be left, right or center        plt.xlabel(f'PC1 ({pcvars[0]:.3f}%)')
-        
+ 
+        plt.xlabel(f'PC1 ({pcvars[0]:.3f}%)')        
         plt.ylabel(f'PC2 ({pcvars[1]:.3f}%)')
         plt.title('PCA')
         st.pyplot(fig)
