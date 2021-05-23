@@ -40,7 +40,25 @@ if uploaded_file is not None:
         pcvars = pca.explained_variance_ratio_[:2]
         fig = plt.figure() 
         plt.plot(pc[:,0],pc[:,1],'o')
-        plt.xlabel(f'PC1 ({pcvars[0]:.3f}%)')
+
+        lp = st.checkbox('Label points?')
+
+        if lp:
+            sel_label = st.selectbox("Select labels for the points",dataframe.columns)
+            labels = dataframe[sel_label]
+            for i in range(pc.shape[0]):
+
+                x = pc[i,0]
+                y = pc[i,1]
+
+                label = str(labels[i])
+
+                plt.annotate(label, # this is the text
+                    (x,y), # this is the point to label
+                    textcoords="offset points", # how to position the text
+                    xytext=(0,3), # distance from text to points (x,y)
+                    ha='center') # horizontal alignment can be left, right or center        plt.xlabel(f'PC1 ({pcvars[0]:.3f}%)')
+        
         plt.ylabel(f'PC2 ({pcvars[1]:.3f}%)')
         plt.title('PCA')
         st.pyplot(fig)
